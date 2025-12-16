@@ -6,11 +6,11 @@ impl cross::NetComponentLookup for MacOsNetComponentLookup {
         unix::lookup_hostname()
     }
     
-    fn lookup_domain(&self) -> cross::BridgeResult<cross::Capable<Option<String>>> {
-        cross::BridgeError::err_incapable(cross::Capability::Domains)
+    fn lookup_domain(&self) -> cross::BridgeResult<cross::Capable<cross::DomainsCapable, Option<String>>> {
+        Ok(cross::Capable::Incapable(cross::DomainsCapable))
     }
 
-    fn lookup_domain_authorities(&self) -> cross::BridgeResult<Vec<cross::DomainAuthority>> {
-        cross::BridgeError::err_incapable(cross::Capability::Domains)
+    fn lookup_domain_authorities(&self) -> cross::BridgeResult<cross::Capable<cross::DomainsCapable, Vec<cross::DomainAuthority>>> {
+        Ok(cross::Capable::Incapable(cross::DomainsCapable))
     }
 }
